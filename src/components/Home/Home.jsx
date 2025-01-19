@@ -11,14 +11,21 @@ import modely from "../../assets/4-modely.jpg";
 import models from "../../assets/3-modelS.jpg";
 import modelX from "../../assets/tesla-4.webp";
 import model3 from "../../assets/home-model3.webp";
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   const items = [
-    { src: models, label: "Model S" },
-    { src: modely, label: "Model Y" },
-    { src: model3, label: "Model 3" },
-    { src: modelX, label: "Model X" },
+    { src: models, label: "Model S", path: "model-s" },
+    { src: modely, label: "Model Y", path: "model-y" },
+    { src: model3, label: "Model 3", path: "model-3" },
+    { src: modelX, label: "Model X", path: "model-x" },
   ];
+
+  const handleLearnMore = (path) => {
+    navigate(`/cardetails/${path}`);
+  };
+
   return (
     <div>
       <HomeWrapper>
@@ -32,10 +39,12 @@ const Home = () => {
 
       {items.map((item, index) => (
         <SectionWrapper key={index}>
-          <img src={item.src} width="100%" />
+          <img src={item.src} width="100%" alt={item.label} />
           <SectionItemBox>
             <SectionHead>{item.label}</SectionHead>
-            <LearnMoreBtn>Learn More</LearnMoreBtn>
+            <LearnMoreBtn onClick={() => handleLearnMore(item.path)}>
+              Learn More
+            </LearnMoreBtn>
           </SectionItemBox>
         </SectionWrapper>
       ))}
