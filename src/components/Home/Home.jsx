@@ -11,9 +11,21 @@ import modely from "../../assets/4-modely.jpg";
 import models from "../../assets/3-modelS.jpg";
 import modelX from "../../assets/tesla-4.webp";
 import model3 from "../../assets/home-model3.webp";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { apiDatas } from "../../ApiSlice/ApiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Home = () => {
+  const { apiData } = useSelector((state) => state.api);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(apiDatas());
+  }, [dispatch]);
+
+  console.log(apiData, "data");
+
   const navigate = useNavigate();
   const items = [
     { src: models, label: "Model S", path: "model-s" },
