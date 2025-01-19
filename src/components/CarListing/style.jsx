@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
 import { Button } from "@mui/material";
 
-// Animation keyframes
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -14,7 +13,6 @@ const fadeIn = keyframes`
   }
 `;
 
-// Layout Components
 export const PageContainer = styled("div")(() => ({
     minHeight: "100vh",
     backgroundColor: "#fff",

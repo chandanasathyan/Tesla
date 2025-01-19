@@ -2,9 +2,18 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
+// export const apiDatas = createAsyncThunk("api/apiDatas", async () => {
+//   const response = await axios.get("localhost:5000/cars");
+//   return response.data;
+// });
 export const apiDatas = createAsyncThunk("api/apiDatas", async () => {
-  const response = await axios.get("https://fakestoreapi.com/products");
-  return response.data;
+  try {
+    const response = await axios.get("http://localhost:5000/cars"); // Added http:// to the URL
+    return response.data;
+  } catch (error) {
+    // Handle errors and return a rejected action
+    return console.log(error, "tttt")
+  }
 });
 
 
@@ -17,7 +26,7 @@ const initialState = {
 const apiSlice = createSlice({
   name: "api",
   initialState,
-  reducers: {}, 
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(apiDatas.pending, (state) => {
